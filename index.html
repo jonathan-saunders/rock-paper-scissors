@@ -1,0 +1,47 @@
+<script>
+
+const choices = ["rock","paper","scissors"];
+let playerSelection = "";
+
+
+function getComputerChoice(){
+    const random = Math.floor(Math.random() * choices.length);
+    return choices[random];
+}
+
+function getPlayerChoice(){
+    playerSelection = prompt("What is your choice?").toLowerCase();
+}
+
+function playRound(computerSelection, playerSelection) {
+
+    if (playerSelection === computerSelection){
+        console.log(playerSelection + " " + computerSelection);
+        return "It's a tie";
+    } else if (playerSelection === "rock" && computerSelection === "scissors" || playerSelection === "paper" && computerSelection === "rock" || playerSelection === "scissors" && computerSelection === "paper") {
+        return "Player wins";
+    } else {
+        return "Computer wins";
+    }
+}
+
+
+
+
+
+
+const computerSelection = getComputerChoice();
+
+playRound(computerSelection, getPlayerChoice());
+
+console.log(playerSelection + computerSelection);
+
+
+
+
+
+
+
+
+
+</script>
