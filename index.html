@@ -2,6 +2,9 @@
 
 const choices = ["rock","paper","scissors"];
 let playerSelection = "";
+let playerScore = 0;
+let computerScore = 0;
+let rounds = 0;
 
 
 function getComputerChoice(){
@@ -18,22 +21,45 @@ function playRound(computerSelection, playerSelection) {
     if (playerSelection === computerSelection){
         return "It's a tie"
     } else if (playerSelection === "rock" && computerSelection === "scissors" || playerSelection === "paper" && computerSelection === "rock" || playerSelection === "scissors" && computerSelection === "paper") {
+        playerScore += 1;
         return "Player wins"
     } else {
+        computerScore += 1;
         return "Computer wins"
     }
 }
 
+function game() {
+    const computerSelection = getComputerChoice();
+    getPlayerChoice();
+    console.log("Player's choice: " + playerSelection + " " + "Computer's choice: " + computerSelection);
+    console.log(playRound(computerSelection, playerSelection));
+}
 
+while (rounds < 5){
+    game();
+    rounds++;
+}
 
-const computerSelection = getComputerChoice();
-getPlayerChoice();
-console.log("Player's choice: " + playerSelection + " " + "Computer's choice: " + computerSelection);
-console.log(playRound(computerSelection, playerSelection));
+console.log("Player score: " + playerScore);
+console.log("Computer score: " + computerScore);
 
+function printScore(){
+    if (computerScore > playerScore) {
+        console.log("The computer wins with a score of " + computerScore);
+    } else {
+        console.log("You win with a score of " + playerScore);
+    }
+}
 
+while ((computerScore + playerScore) < 5){
+    console.log("Tie breaker round!");
+    game();
+}
 
-
+console.log("Player score: " + playerScore);
+console.log("Computer score: " + computerScore);
+printScore();
 
 
 
